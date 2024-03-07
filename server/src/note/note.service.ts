@@ -34,7 +34,7 @@ export class NoteService {
       { _id: id, userId },
       { ...updateNoteDto },
     );
-    console.log({ ack });
+
     if (ack.modifiedCount) return await this.noteModel.findById(id);
     throw new HttpException('No note found!', HttpStatus.BAD_REQUEST);
   }
