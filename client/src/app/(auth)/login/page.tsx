@@ -1,4 +1,9 @@
 import Login from "@/src/components/login";
+import { Suspense } from "react";
 export default function LoginPage() {
-  return <Login />;
+  return (
+    <Suspense>
+      <Login />
+    </Suspense>
+  );
 }

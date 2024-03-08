@@ -1,7 +1,7 @@
 "use client";
 import Note from "../components/note";
 import CreateNote from "../components/note/CreateNote";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import useFetch from "../hooks/useFetch";
 import { useRouter } from "next/navigation";
@@ -27,11 +27,13 @@ export default function Home() {
 
   return (
     <>
-      <CreateNote
-        handleFetchNotes={handleFetchNotes}
-        showModal={showModal}
-        toggleModal={toggleModal}
-      />
+      <Suspense>
+        <CreateNote
+          handleFetchNotes={handleFetchNotes}
+          showModal={showModal}
+          toggleModal={toggleModal}
+        />
+      </Suspense>
       <div className="w-full flex flex-wrap justify-around">
         {(data || []).length ? (
           (data || []).map(
