@@ -10,7 +10,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { UserDocument, UserEntity } from './entities/auth.entity';
 import { Model } from 'mongoose';
 import { sign } from 'jsonwebtoken';
-import { compare } from 'bcrypt';
+import { compare } from 'bcryptjs';
 import { LoginUserDto } from './dto/login-user.dto';
 import { ConfigService } from '@nestjs/config';
 
