@@ -12,12 +12,16 @@ export default function Register() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     try {
-      const response = await fetch("http://localhost:8000/api/auth/register", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_PATH}/api/auth/register`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
       if (response.ok) {
         const data = await response.json();
+        toast.success("User created! Please log in.");
         router.replace("/login");
       } else {
         const error = await response.json();

@@ -1,4 +1,5 @@
 import style from "@/src/components/auth/auth.module.css";
+import Link from "next/link";
 import { FormEvent } from "react";
 
 interface Props {
@@ -79,6 +80,18 @@ export default function Auth({ type, handleSubmit, error, resetError }: Props) {
           >
             Submit
           </button>
+          <p className="text-center mt-2 text-gray-500 text-sm">
+            {type === "Login" ? (
+              <>
+                Don't have an account?{" "}
+                <Link href="/register">Register here</Link>
+              </>
+            ) : (
+              <>
+                Already have an account ? <Link href="/login">Login here</Link>
+              </>
+            )}
+          </p>
         </form>
       </div>
     </div>

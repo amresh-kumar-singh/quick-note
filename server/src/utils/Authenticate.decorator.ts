@@ -1,5 +1,6 @@
 import { UnauthorizedException } from '@nestjs/common';
 
+// if user to be checked in request then Request should be the first param in controller methods
 export function Authenticate() {
   return function (
     target: any,

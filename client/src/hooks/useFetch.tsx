@@ -1,4 +1,4 @@
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -31,6 +31,9 @@ export default function useFetch() {
         const formattedError = Array.isArray(error.message)
           ? error.message[0]
           : error.message;
+        if (formattedError == "Please login to continue!") {
+          signOut();
+        }
         throw new Error(formattedError);
       }
     } catch (error: any) {

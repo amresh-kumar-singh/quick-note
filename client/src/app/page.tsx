@@ -33,22 +33,30 @@ export default function Home() {
         toggleModal={toggleModal}
       />
       <div className="w-full flex flex-wrap justify-around">
-        {(data || []).map(
-          ({ title, content, updatedAt, _id }: any, index: number) => {
-            return (
-              <Note
-                key={_id}
-                {...{
-                  title,
-                  content,
-                  id: _id,
-                  updatedAt: new Date(updatedAt).toLocaleDateString(),
-                  handleFetchNotes,
-                  toggleModal,
-                }}
-              />
-            );
-          }
+        {(data || []).length ? (
+          (data || []).map(
+            ({ title, content, updatedAt, _id }: any, index: number) => {
+              return (
+                <Note
+                  key={_id}
+                  {...{
+                    title,
+                    content,
+                    id: _id,
+                    updatedAt: new Date(updatedAt).toLocaleDateString(),
+                    handleFetchNotes,
+                    toggleModal,
+                  }}
+                />
+              );
+            }
+          )
+        ) : (
+          <p className="text-justify">
+            Please create your first note by clicking on{" "}
+            <strong className="text-xl">⊕</strong> button in the bottom left
+            corner.
+          </p>
         )}
       </div>
     </>

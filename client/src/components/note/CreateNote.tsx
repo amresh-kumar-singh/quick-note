@@ -49,6 +49,7 @@ export default function CreateNote({
 
   const handleFetchNote = async () => {
     if (!id) return;
+    // return;
     const data = await handleFetch({ method: "GET", path: `/api/note/${id}` });
     if (data) {
       setTitle(data.title);
@@ -57,7 +58,7 @@ export default function CreateNote({
   };
 
   useEffect(() => {
-    if (id) handleFetchNote();
+    if (id && showModal === "visible") handleFetchNote();
     else {
       setContent("");
       setTitle("");
@@ -68,6 +69,7 @@ export default function CreateNote({
     <>
       <button
         className={style.add}
+        title="Create note"
         onClick={() => {
           toggleModal();
           router.push("/");
@@ -95,6 +97,7 @@ export default function CreateNote({
                 type="button"
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                 data-modal-toggle="crud-modal"
+                onClick={toggleModal}
               >
                 <svg
                   className="w-3 h-3"
