@@ -2,6 +2,7 @@
 import useFetch from "@/src/hooks/useFetch";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import Loader from "../Loader";
 
 interface Props {
   title: string;
@@ -45,6 +46,7 @@ export default function Note({
   };
   return (
     <div className="w-[280px] mb-3 bg-yellow-100 rounded flex flex-col justify-between overflow-hidden shadow-lg min-h-[200px] md:w-[320px]">
+      {isLoading && <Loader />}
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2" onClick={handleClick}>
           {title}

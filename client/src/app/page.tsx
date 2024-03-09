@@ -5,9 +5,10 @@ import { Suspense, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import useFetch from "../hooks/useFetch";
 import { useRouter } from "next/navigation";
+import Loader from "../components/Loader";
 
 export default function Home() {
-  const { data: session } = useSession();
+  const { data: session, ...rest } = useSession();
   const router = useRouter();
   const { isLoading, handleFetch, data } = useFetch();
   const [showModal, setShowModal] = useState("hidden");
@@ -35,6 +36,8 @@ export default function Home() {
         />
       </Suspense>
       <div className="w-full flex flex-wrap justify-around">
+        {isLoading && <Loader />}
+
         {(data || []).length ? (
           (data || []).map(
             ({ title, content, updatedAt, _id }: any, index: number) => {

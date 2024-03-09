@@ -7,10 +7,12 @@ import toast from "react-hot-toast";
 
 export default function Register() {
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
+    setIsLoading(true);
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_PATH}/api/auth/register`,
@@ -32,8 +34,14 @@ export default function Register() {
       }
     } catch (error: any) {
       toast.error(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
   const resetError = () => setError("");
-  return <Auth {...{ handleSubmit, error, resetError, type: "Register" }} />;
+  return (
+    <Auth
+      {...{ handleSubmit, error, resetError, type: "Register", isLoading }}
+    />
+  );
 }

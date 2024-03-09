@@ -14,6 +14,7 @@ export default function useFetch() {
 
   const handleFetch = async ({ path, body, method = "GET" }: Props) => {
     try {
+      setIsLoading(true);
       const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_PATH}${path}`, {
         method,
         body,
@@ -38,6 +39,8 @@ export default function useFetch() {
       }
     } catch (error: any) {
       toast.error(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 

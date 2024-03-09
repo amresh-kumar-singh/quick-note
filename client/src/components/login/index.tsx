@@ -7,11 +7,13 @@ import toast from "react-hot-toast";
 
 export default function Login({ title = "Login", ...props }) {
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const searchParams = useSearchParams();
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
     const formData = new FormData(e.currentTarget);
+    setIsLoading(true);
     try {
       let res = await signIn("credentials", {
         email: formData.get("email"),
@@ -23,6 +25,8 @@ export default function Login({ title = "Login", ...props }) {
       }
     } catch (error: any) {
       toast.error(error.message);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -34,6 +38,7 @@ export default function Login({ title = "Login", ...props }) {
       type="Login"
       error={error}
       resetError={resetError}
+      isLoading={isLoading}
     />
   );
 }

@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className="min-h-screen">
         <Provider>
           <Nav />
-          <div className="flex justify-center items-center p-16">
+          <div className="relative flex justify-center items-center p-16">
             {children}
           </div>
         </Provider>
