@@ -2,7 +2,7 @@
 
 This is a simple note-taking application with CRUD operations and authentication.
 
-## Getting Started
+## Getting Started (Backend is undeployed on 15 April,2024)
 
 To access the live version of this project, click [here](https://quick-note-nine.vercel.app//).
 
